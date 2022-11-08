@@ -1,8 +1,11 @@
 import React from "react";
 import { HiStar } from "react-icons/hi";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
+import { Link } from "react-router-dom";
 
 const ServiceCards = ({ service }) => {
-  const { title, img, rating, price, description } = service;
+  const { _id, title, img, rating, price, description } = service;
   return (
     <div class="max-w-xs overflow-hidden bg-white rounded-lg shadow-2xl dark:bg-gray-800">
       <div class="px-4 py-2">
@@ -12,14 +15,19 @@ const ServiceCards = ({ service }) => {
           Rating: {rating} <HiStar className="text-yellow-500 text-lg inline" />
         </p>
       </div>
-
-      <img class="object-cover w-full h-48 mt-2" src={img} alt="NIKE AIR" />
+      <PhotoProvider>
+        <PhotoView src={img}>
+          <img class="object-cover w-full h-48 mt-2 cursor-pointer" src={img} alt="" />
+        </PhotoView>
+      </PhotoProvider>
 
       <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
         <h1 class="text-lg font-bold text-orange-400">${price}</h1>
-        <button class="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
-          Details
-        </button>
+        <Link to={`/service/${_id}`}>
+          <button class="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
+            Details
+          </button>
+        </Link>
       </div>
     </div>
   );

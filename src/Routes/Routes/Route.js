@@ -5,6 +5,7 @@ import Gallery from "../../components/Gallery/Gallery";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
 import Register from "../../components/Register/Register";
+import ServiceDetails from "../../components/ServiceDetails/ServiceDetails";
 import Services from "../../components/Services/Services";
 import Main from "../../layout/Main";
 
@@ -22,6 +23,11 @@ export const routes = createBrowserRouter([
         path: "/services",
         element: <Services />,
         loader: () => fetch('http://localhost:5000/services')
+      },
+      {
+        path: '/service/:id',
+        element: <ServiceDetails/>,
+        loader: ({params}) => fetch(`http://localhost:5000/service/${params.id}`)
       },
       {
         path: "/gallery",
