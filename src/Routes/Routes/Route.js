@@ -21,6 +21,7 @@ export const routes = createBrowserRouter([
       {
         path: "/services",
         element: <Services />,
+        loader: () => fetch('http://localhost:5000/services')
       },
       {
         path: "/gallery",
