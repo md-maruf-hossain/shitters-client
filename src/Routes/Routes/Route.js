@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../../components/Blog/Blog";
+import Error from "../../components/Error/Error";
 import Gallery from "../../components/Gallery/Gallery";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
-import OurTeam from "../../components/OurTeam/OurTeam";
 import Register from "../../components/Register/Register";
 import Services from "../../components/Services/Services";
 import Main from "../../layout/Main";
@@ -22,10 +22,6 @@ export const routes = createBrowserRouter([
         element: <Services />,
       },
       {
-        path: "/ourteam",
-        element: <OurTeam />,
-      },
-      {
         path: "/gallery",
         element: <Gallery />,
       },
@@ -41,6 +37,10 @@ export const routes = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+        path: '/*',
+        element: <Error/>
+      }
     ],
   },
 ]);
