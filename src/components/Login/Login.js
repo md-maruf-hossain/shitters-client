@@ -2,52 +2,59 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
-    <section class="bg-white dark:bg-gray-900">
-      <div class="container flex items-center justify-center min-h-screen px-6 mx-auto">
-        <form class="w-full max-w-md">
-          <h1 class="text-3xl font-semibold text-gray-800 capitalize dark:text-white">sign In</h1>
+    <section className="mt-10 p-10">
+      <div className="container flex justify-center min-h-screen mx-auto">
+        <form onSubmit={handleOnSubmit} className="w-full max-w-md">
+          <h1 className="text-3xl font-semibold text-gray-800 capitalize dark:text-white">sign In</h1>
 
-          <div class="relative flex items-center mt-8">
-            <span class="absolute">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <div className="relative flex items-center mt-8">
+            <span className="absolute">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </span>
 
             <input
-              type="email" name="email" id="name"
-              class="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              type="email"
+              name="email"
+              id="name"
+              className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Email address"
             />
           </div>
 
-          <div class="relative flex items-center mt-4">
-            <span class="absolute">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          <div className="relative flex items-center mt-4">
+            <span className="absolute">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </span>
 
             <input
-              type="password" name="password" id="password"
-              class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              type="password"
+              name="password"
+              id="password"
+              className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Password"
             />
           </div>
 
-          <div class="mt-6">
-            <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors duration-300 transform bg-orange-500 rounded-md hover:bg-orange-300 focus:outline-none">
+          <div className="mt-6">
+            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors duration-300 transform bg-orange-500 rounded-md hover:bg-orange-300 focus:outline-none">
               Sign in
             </button>
 
-            <p class="mt-4 text-center text-gray-600 dark:text-gray-400">or sign in with</p>
+            <p className="mt-4 text-center text-gray-600 dark:text-gray-400">or sign in with</p>
 
             <Link
               href="#"
-              class="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+              className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
-              <svg class="w-6 h-6 mx-2" viewBox="0 0 40 40">
+              <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                 <path
                   d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
                   fill="#FFC107"
@@ -66,10 +73,10 @@ const Login = () => {
                 />
               </svg>
 
-              <span class="mx-2">Sign in with Google</span>
+              <span className="mx-2">Sign in with Google</span>
             </Link>
 
-            <div class="mt-6 text-center ">
+            <div className="mt-6 text-center ">
               <Link to="/register" className="text-sm hover:underline">
                 Don't have an account yet? Sign up
               </Link>
