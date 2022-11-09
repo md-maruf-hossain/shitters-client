@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import { GrServices, GrDocument } from "react-icons/gr";
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = {};
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleUserLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="navbar bg-slate-200 border-b-2 border-slate-300">
       <div className="navbar-start">
@@ -49,14 +57,13 @@ const Header = () => {
       </div>
       {/* user */}
 
-
-      {/* {user ? ( */}
+      {user ? (
         <>
           <div className="navbar-end">
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src="https://placeimg.com/80/80/people" alt="" />
+                  <img src={user.photoURL} alt="" />
                 </div>
               </label>
               <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
@@ -73,7 +80,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="btn btn-ghost text-red-500">
+                  <Link onClick={handleUserLogOut} className="btn btn-ghost text-red-500">
                     <IoIosLogOut className="text-xl text-red-500" />
                     Logout
                   </Link>
@@ -82,13 +89,13 @@ const Header = () => {
             </div>
           </div>
         </>
-      {/* ) : ( */}
+      ) : (
         <>
           <Link className="btn btn-ghost" to="/login">
             Login
           </Link>
         </>
-      {/* )} */}
+      )}
     </div>
   );
 };

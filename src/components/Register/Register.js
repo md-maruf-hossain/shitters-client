@@ -1,9 +1,21 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Register = () => {
-  const {createUser} = useContext(AuthContext)
+  const {createUser, updateUserProfile, googleUserLogin} = useContext(AuthContext)
+
+  const google = new GoogleAuthProvider();
+
+  const handleGoogle =() =>{
+    googleUserLogin(google)
+    .then((result) =>{
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(err => console.error(err));
+  }
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -16,13 +28,19 @@ const Register = () => {
     createUser(email, password)
     .then(result =>{
       const user = result.user;
+      handleUpdateCurrentUser(name, imgURL);
       console.log(user);
     })
     .catch(err => console.error(err))
-
-    // updateCuurentUser(name, imgURL)
-    // .then(() =>{})
-    // .catch(err => console.error(err));
+  }
+  const handleUpdateCurrentUser = (name, imgURL) =>{
+    const currentUser = {
+      displayName: name,
+      photoURL: imgURL,
+    };
+    updateUserProfile(currentUser)
+    .then(() => {})
+    .catch((error) => console.error(error));
   }
 
   return (
@@ -36,6 +54,7 @@ const Register = () => {
         </p>
         <div className="my-6 space-y-4">
           <Link
+            onClick={handleGoogle}
             href="#"
             className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
           >
@@ -69,7 +88,7 @@ const Register = () => {
         <form onSubmit={handleRegister} noValidate="" action="" className="space-y-8 ng-untouched ng-pristine ng-valid">
           <div className="space-y-4">
             <div className="space-y-2">
-              <label for="email" className="block text-sm">
+              <label htmlFor="email" className="block text-sm">
                 Name
               </label>
               <input
@@ -81,7 +100,7 @@ const Register = () => {
               />
             </div>
             <div className="space-y-2">
-              <label for="email" className="block text-sm">
+              <label htmlFor="email" className="block text-sm">
                 Your Image URL
               </label>
               <input
@@ -93,7 +112,7 @@ const Register = () => {
               />
             </div>
             <div className="space-y-2">
-              <label for="email" className="block text-sm">
+              <label htmlFor="email" className="block text-sm">
                 Email address
               </label>
               <input
@@ -106,7 +125,7 @@ const Register = () => {
             </div>
             <div className="space-y-2">
               <div className="flex justify-between">
-                <label for="password" className="text-sm">
+                <label htmlFor="password" className="text-sm">
                   Password
                 </label>
               </div>

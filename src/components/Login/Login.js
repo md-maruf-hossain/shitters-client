@@ -1,10 +1,34 @@
-import React from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const {logIn, googleUserLogin} = useContext(AuthContext)
   const handleOnSubmit = (event) => {
     event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    logIn(email, password)
+    .then(result =>{
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(err => console.error(err));
   };
+  const google = new GoogleAuthProvider();
+
+  const handleGoogle =() =>{
+    googleUserLogin(google)
+    .then((result) =>{
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(err => console.error(err));
+  }
+
   return (
     <section className="mt-10 p-10">
       <div className="container flex justify-center min-h-screen mx-auto">
@@ -51,7 +75,7 @@ const Login = () => {
             <p className="mt-4 text-center text-gray-600 dark:text-gray-400">or sign in with</p>
 
             <Link
-              href="#"
+              onClick={handleGoogle}
               className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
               <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">

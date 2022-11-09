@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAdm8JEDbw7HJcz_QfHnAfJJ-wZgoG1mHM",
-  authDomain: "shutter-12705.firebaseapp.com",
-  projectId: "shutter-12705",
-  storageBucket: "shutter-12705.appspot.com",
-  messagingSenderId: "252144754945",
-  appId: "1:252144754945:web:fbd0bf17d47b14477cfb00",
+  apiKey: "AIzaSyCGjpKYr4d-HhM_fIopr9rePR_ZRK4e-B4",
+  authDomain: "shutter-photograph.firebaseapp.com",
+  projectId: "shutter-photograph",
+  storageBucket: "shutter-photograph.appspot.com",
+  messagingSenderId: "229555913096",
+  appId: "1:229555913096:web:6bb3e8e855375ad9ecfa3d",
 };
 
 // Initialize Firebase
