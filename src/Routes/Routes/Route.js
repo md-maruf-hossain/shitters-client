@@ -4,10 +4,13 @@ import Error from "../../components/Error/Error";
 import Gallery from "../../components/Gallery/Gallery";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
+import MyReviews from "../../components/MyReviews/MyReviews";
+import MyServices from "../../components/MyServices/MyServices";
 import Register from "../../components/Register/Register";
 import ServiceDetails from "../../components/ServiceDetails/ServiceDetails";
 import Services from "../../components/Services/Services";
 import Main from "../../layout/Main";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -26,8 +29,16 @@ export const routes = createBrowserRouter([
       },
       {
         path: '/service/:id',
-        element: <ServiceDetails/>,
+        element: <PrivateRoute><ServiceDetails/></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/service/${params.id}`)
+      },
+      {
+        path: '/myServices',
+        element: <PrivateRoute><MyServices/></PrivateRoute>,
+      },
+      {
+        path: '/myReview',
+        element: <PrivateRoute><MyReviews/></PrivateRoute>,
       },
       {
         path: "/gallery",

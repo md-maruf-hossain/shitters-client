@@ -1,10 +1,15 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
-  const {logIn, googleUserLogin} = useContext(AuthContext)
+  const {logIn, googleUserLogin} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname|| '/';
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -13,10 +18,15 @@ const Login = () => {
 
     logIn(email, password)
     .then(result =>{
+      toast.success('Login successful!')
       const user = result.user;
+      navigate(from, {replace: true})
+      form.reset()
       console.log(user);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error(err);
+    });
   };
   const google = new GoogleAuthProvider();
 
@@ -26,7 +36,9 @@ const Login = () => {
       const user = result.user;
       console.log(user);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error(err)
+    });
   }
 
   return (
@@ -66,8 +78,8 @@ const Login = () => {
               placeholder="Password"
             />
           </div>
-
           <div className="mt-6">
+            <div><Toaster/></div>
             <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors duration-300 transform bg-orange-500 rounded-md hover:bg-orange-300 focus:outline-none">
               Sign in
             </button>
