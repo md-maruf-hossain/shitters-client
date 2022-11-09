@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { GiPriceTag } from "react-icons/gi";
 import { HiStar } from "react-icons/hi";
 import ServiceReview from "./ServiceReview";
+import WriteAReview from "./WriteAReview";
+import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 const ServiceDetails = () => {
   const { title, img, rating, price, description } = useLoaderData();
+  const {user} = useContext(AuthContext);
+  console.log(user);
   return (
     <div className="flex flex-col items-center my-5">
       {/* details */}
@@ -30,6 +34,16 @@ const ServiceDetails = () => {
           </div>
         </div>
       </div>
+      {/*------------------------
+                Write a review 
+        ---------------------------*/}
+        {
+          user ? <WriteAReview/>
+          :
+          <div className="text-3xl text-center font-bold my-10">
+            <h1>Please <Link to='/login' className="hover:underline">Login</Link> or <Link to='/register' className="hover:underline">Register</Link> to write a review</h1>
+          </div>
+        }
       {/*--------------------
                 review 
         ----------------------*/}
