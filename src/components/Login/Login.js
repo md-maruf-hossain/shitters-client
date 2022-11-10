@@ -2,13 +2,15 @@ import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
-  const {logIn, googleUserLogin} = useContext(AuthContext);
+  useTitle("Login");
+  const { logIn, googleUserLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname|| '/';
+  const from = location.state?.from?.pathname || "/";
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -17,30 +19,30 @@ const Login = () => {
     const password = form.password.value;
 
     logIn(email, password)
-    .then(result =>{
-      toast.success('Login successful!')
-      const user = result.user;
-      navigate(from, {replace: true})
-      form.reset()
-      console.log(user);
-    })
-    .catch(err => {
-      console.error(err);
-    });
+      .then((result) => {
+        toast.success("Login successful!");
+        const user = result.user;
+        navigate(from, { replace: true });
+        form.reset();
+        console.log(user);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
   const google = new GoogleAuthProvider();
 
-  const handleGoogle =() =>{
+  const handleGoogle = () => {
     googleUserLogin(google)
-    .then((result) =>{
-      const user = result.user;
-      navigate(from, {replace: true})
-      console.log(user);
-    })
-    .catch(err => {
-      console.error(err)
-    });
-  }
+      .then((result) => {
+        const user = result.user;
+        navigate(from, { replace: true });
+        console.log(user);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <section className="mt-10 p-10">
@@ -80,7 +82,9 @@ const Login = () => {
             />
           </div>
           <div className="mt-6">
-            <div><Toaster/></div>
+            <div>
+              <Toaster />
+            </div>
             <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors duration-300 transform bg-orange-500 rounded-md hover:bg-orange-300 focus:outline-none">
               Sign in
             </button>

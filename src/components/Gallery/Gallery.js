@@ -1,6 +1,8 @@
 import React from "react";
+import useTitle from "../../hooks/useTitle";
 
 const Gallery = () => {
+  useTitle("Gallery");
   return (
     <div>
       <section className="py-6 dark:bg-gray-800 dark:text-gray-50">

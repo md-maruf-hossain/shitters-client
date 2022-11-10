@@ -1,43 +1,43 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import { HiUser } from "react-icons/hi";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
 
 const WriteAReview = () => {
-    const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const { _id } = useLoaderData();
 
-    const userEmail = user?.email || "No email found" ;
-    const userPhoto = user?.photoURL || <HiUser/>;
-    const userName = user?.displayName || "No username found";
+  const handleReviewSubmission = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const reviewText = form.review.value;
+    form.reset();
 
-    const handleReviewSubmission = (event) =>{
-        event.preventDefault();
-        const form = event.target;
-        const reviewText = form.review.value;
-        form.reset();
-        
-        const review = {
-            reviewText: reviewText,
-            userEmail: userEmail,
-            userPhoto: userPhoto,
-            userName: userName,
-        };
-        fetch('http://localhost:5000/review', {
-            method: 'POST',
-            headers:{
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(review)
-        })
-        .then(res => res.json())
-        .then(data =>{ 
-                if(data.acknowledged){
-                    toast.success('Successfully added')
-                };
-                console.log(data)
-            })
-        .catch(err => console.log(err))
-    }
+    const review = {
+      reviewText: reviewText,
+      serviceId: _id,
+      userEmail: user?.email || "No email found",
+      userPhoto: user?.photoURL || <HiUser />,
+      userName: user?.displayName || "No username found",
+    };
+
+    fetch("http://localhost:5000/review", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Successfully added");
+        }
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="p-5">
       <div>
@@ -55,10 +55,12 @@ const WriteAReview = () => {
               required
             />
           </div>
-        <button type="submit" className="px-5 py-3 font-semibold border-2 border-gray-300 rounded hover:bg-orange-400">
-          Post Review
-        </button>
-        <div><Toaster/></div>
+          <button type="submit" className="px-5 py-3 font-semibold border-2 border-gray-300 rounded hover:bg-orange-400">
+            Post Review
+          </button>
+          <div>
+            <Toaster />
+          </div>
         </form>
       </div>
     </div>

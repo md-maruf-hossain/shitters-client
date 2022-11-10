@@ -5,6 +5,7 @@ import Gallery from "../../components/Gallery/Gallery";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
 import MyReviews from "../../components/MyReviews/MyReviews";
+import MyReviewUpdate from "../../components/MyReviews/MyReviewUpdate";
 import MyServices from "../../components/MyServices/MyServices";
 import Register from "../../components/Register/Register";
 import ServiceDetails from "../../components/ServiceDetails/ServiceDetails";
@@ -39,6 +40,11 @@ export const routes = createBrowserRouter([
       {
         path: '/myReview',
         element: <PrivateRoute><MyReviews/></PrivateRoute>,
+      },
+      {
+        path: '/myreviewedit/:id',
+        element: <PrivateRoute><MyReviewUpdate/></PrivateRoute>,
+        loader: ({params}) =>fetch(`http://localhost:5000/updatereview/${params.id}`)
       },
       {
         path: "/gallery",

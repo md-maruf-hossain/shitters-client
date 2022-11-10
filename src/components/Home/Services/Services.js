@@ -11,7 +11,7 @@ const Services = () => {
             <h2 className='text-4xl font-bold text-orange-500 text-center mb-5'>Services</h2>
             <div className='grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10'>
                 {
-                    services.slice(0, 3).map(service => <ServiceCard
+                    services.sort( (a, b)=> a._id < b._id ? 1 : -1 ).slice(0, 3).map(service => <ServiceCard
                         key={service._id}
                         service={service}
                     />)
