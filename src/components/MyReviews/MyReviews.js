@@ -12,7 +12,7 @@ const MyReviews = () => {
   console.log(user);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review?email=${user.email}`)
+    fetch(`https://shutters-server.vercel.app/review?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setQueryReviews(data));
   }, [user.email]);
@@ -21,7 +21,7 @@ const MyReviews = () => {
     console.log(id);
     const deleteData = window.confirm("Are you se to delete this data?");
     if (deleteData) {
-      fetch(`http://localhost:5000/review/${id}`, {
+      fetch(`https://shutters-server.vercel.app/review/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

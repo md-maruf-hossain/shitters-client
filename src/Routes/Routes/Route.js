@@ -21,30 +21,42 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch('http://localhost:5000/services')
+        loader: () => fetch("https://shutters-server.vercel.app/services"),
       },
       {
         path: "/services",
         element: <Services />,
-        loader: () => fetch('http://localhost:5000/services')
+        loader: () => fetch("https://shutters-server.vercel.app/services"),
       },
       {
-        path: '/service/:id',
-        element: <ServiceDetails/>,
-        loader: ({params}) => fetch(`http://localhost:5000/service/${params.id}`)
+        path: "/service/:id",
+        element: <ServiceDetails />,
+        loader: ({ params }) => fetch(`https://shutters-server.vercel.app/service/${params.id}`),
       },
       {
-        path: '/myServices',
-        element: <PrivateRoute><MyServices/></PrivateRoute>,
+        path: "/myServices",
+        element: (
+          <PrivateRoute>
+            <MyServices />
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/myReview',
-        element: <PrivateRoute><MyReviews/></PrivateRoute>,
+        path: "/myReview",
+        element: (
+          <PrivateRoute>
+            <MyReviews />
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/myreviewedit/:id',
-        element: <PrivateRoute><MyReviewUpdate/></PrivateRoute>,
-        loader: ({params}) =>fetch(`http://localhost:5000/updatereview/${params.id}`)
+        path: "/myreviewedit/:id",
+        element: (
+          <PrivateRoute>
+            <MyReviewUpdate />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => fetch(`https://shutters-server.vercel.app/updatereview/${params.id}`),
       },
       {
         path: "/gallery",
@@ -63,9 +75,9 @@ export const routes = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: '/*',
-        element: <Error/>
-      }
+        path: "/*",
+        element: <Error />,
+      },
     ],
   },
 ]);

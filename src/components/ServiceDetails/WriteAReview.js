@@ -22,7 +22,7 @@ const WriteAReview = () => {
       userName: user?.displayName || "No username found",
     };
 
-    fetch("http://localhost:5000/review", {
+    fetch("https://shutters-server.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
